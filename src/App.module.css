@@ -1,0 +1,17 @@
+.layout {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 32px var(--gutter) 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--review-width);
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px 16px 48px;
+    gap: 24px;
+  }
+}
