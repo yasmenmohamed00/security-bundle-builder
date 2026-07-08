@@ -1,0 +1,91 @@
+.card {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding: 20px 16px 16px;
+    background: var(--c-surface);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-card);
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 14px rgba(33, 36, 55, 0.08);
+  }
+  
+  /* Selected state: quantity > 0 on any variant. */
+  .card.selected {
+    border: 2px solid var(--c-focus);
+  }
+  
+  .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+  }
+  
+  .media {
+    flex: none;
+    width: 120px;
+    align-self: center;
+  }
+  
+  .media img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+  
+  .body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .title {
+    font-size: var(--fs-title-s);
+    font-weight: 600;
+    padding-top: 8px;
+  }
+  
+  .description {
+    font-size: var(--fs-body-s);
+    color: var(--c-ink-soft);
+  }
+  
+  .learnMore {
+    color: var(--c-primary);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  
+  .learnMore:hover {
+    color: var(--c-primary-dark);
+  }
+  
+  .footer {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 4px;
+  }
+  
+  @media (max-width: 479px) {
+    .card {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .media {
+      align-self: center;
+    }
+    .title {
+      padding-top: 0;
+    }
+  }
+  

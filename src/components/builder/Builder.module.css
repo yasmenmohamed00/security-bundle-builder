@@ -1,0 +1,19 @@
+.builder {
+    min-width: 0;
+  }
+  
+  /* "Let's get started!" only exists on the mobile design. */
+  .mobileTitle {
+    display: none;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 8px 0 20px;
+  }
+  
+  @media (max-width: 1023px) {
+    .mobileTitle {
+      display: block;
+    }
+  }
+  

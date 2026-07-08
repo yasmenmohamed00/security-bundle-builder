@@ -1,0 +1,24 @@
+.select {
+    padding: 6px 18px;
+    border: 1.5px solid var(--c-primary);
+    border-radius: var(--radius-m);
+    color: var(--c-primary);
+    font-size: var(--fs-body-s);
+    font-weight: 600;
+    background: var(--c-surface);
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+  
+  .select:hover {
+    background: var(--c-primary-soft);
+  }
+  
+  .select.isSelected {
+    background: var(--c-primary);
+    color: #fff;
+  }
+  
+  .select.isSelected:hover {
+    background: var(--c-primary-dark);
+  }
+  

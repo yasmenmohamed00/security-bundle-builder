@@ -1,0 +1,171 @@
+
+  
+.section.open {
+    background: var(--c-primary-soft);
+    border-radius: var(--radius-l);
+    border-top-color: transparent;
+    margin-bottom: 20px;
+    padding: 12px 0;
+  }
+
+  .section.open .heading {
+    border-top-color: var(--c-stepper-border);
+    border-bottom-color: transparent;
+  }
+
+  .section:last-child:not(.open) {
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--c-stepper-border);
+  }
+  
+  .eyebrow {
+    margin: 0 16px;
+    padding: 3px 0;
+  }
+  
+  .heading {
+    border-top: 0.5px solid var(--c-stepper-border);
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  
+  .section + .section {
+    border-top: 1px solid var(--c-stepper-border);
+  }
+
+  .section.open + .section {
+    border-top-color: transparent;
+  }
+  
+  .headerButton {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .iconWrap {
+    display: inline-flex;
+    margin: 0 4px;
+    color: var(--c-ink);
+    flex: none;
+  }
+  
+  .title {
+    font-size: var(--fs-title);
+    font-weight: 600;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--c-primary);
+    font-size: var(--fs-body);
+    font-weight: 500;
+    flex: none;
+  }
+  
+  .count {
+    white-space: nowrap;
+  }
+  
+  /* Figma: desktop shows the count ONLY on the open step; mobile shows it on
+     collapsed steps too (when something is selected). */
+  @media (min-width: 1024px) {
+    .section:not(.open) .count {
+      display: none;
+    }
+    .section:not(.open) .indicator {
+      color: var(--c-primary);
+    }
+  }
+  
+  @media (max-width: 1023px) {
+    .section:not(.open) .indicator:not(.hasCount) .count {
+      display: none;
+    }
+  }
+  
+  .panel {
+    padding: 16px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  
+  /* Odd last card sits centered on its own row (Battery Cam Pro in the Figma). */
+  .grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 8px);
+  }
+  
+  .nextRow {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  
+  .nextButton {
+    padding: 10px 24px;
+    border: 1.5px solid var(--c-primary);
+    border-radius: var(--radius-m);
+    color: var(--c-primary);
+    font-weight: 400;
+    font-size: var(--fs-body);
+    background: var(--c-surface);
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+  
+  .nextButton:hover {
+    background: var(--c-primary);
+    color: #fff;
+  }
+  
+  .nextButton:active {
+    background: var(--c-primary-dark);
+    border-color: var(--c-primary-dark);
+    color: #fff;
+  }
+  
+  @media (max-width: 1279px) and (min-width: 1024px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .grid > :last-child:nth-child(odd) {
+      grid-column: auto;
+      justify-self: stretch;
+      width: auto;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .grid > :last-child:nth-child(odd) {
+      grid-column: auto;
+      justify-self: stretch;
+      width: auto;
+    }
+    .section.open {
+      padding: 12px 14px 20px;
+    }
+    .title {
+      font-size: 1.125rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
