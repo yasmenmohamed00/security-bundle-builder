@@ -214,9 +214,7 @@
     },
     "activeVariants": {
       "wyze-cam-v4": "white",
-      "wyze-cam-pan-v3": "white",
-      "wyze-cam-floodlight-v2": "white",
-      "wyze-battery-cam-pro": "white"
+      "wyze-cam-pan-v3": "white"
     }
   }
 }

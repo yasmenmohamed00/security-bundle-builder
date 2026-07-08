@@ -5,22 +5,24 @@
 :root {
     /* Color */
     --c-primary: #4E2FD2;
-    --c-primary-soft: #ffffff; /* open-step + review panel wash */
+    --c-primary-soft: #EDF4FF; /* open-step + review panel wash */
     --c-primary-chip: #EDF4FF;
     --c-ink: #0B0D10; /* headings / primary text */
     --c-ink-soft: #1F1F1FBF; /* body copy */
     --c-muted: #575757; /* eyebrows, struck prices */
     --c-muted-soft: #A8B2BD;
-    --c-border: #e4e6f0;
+    --c-muted-softer: #CCCCCC;
+    --c-border: #CED6DE;
     --c-danger: #D8392B; /* struck compare-at on cards */
     --c-success: #0AA288; /* savings callout, FREE shipping icon */
+    --c-success-soft: #1DF0BB0A; /* savings callout, FREE shipping icon */
     --c-surface: #ffffff;
     --c-stepper-bg: #ffffff;
     --c-stepper-border: #1F1F1F;
     --c-focus: #4E2FD2B2;
   
     /* Type */
-    --font-sans: 'Gilroy', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    --font-gilroy: 'Gilroy', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
       sans-serif;
     --fs-eyebrow: 0.6875rem; /* 11px — STEP X OF 4, group labels */
     --fs-body-s: 0.8125rem; /* 13px */
@@ -38,7 +40,7 @@
     --shadow-card: 0 1px 2px rgba(33, 36, 55, 0.05);
   
     /* Layout */
-    --page-max: 1360px;
+    --page-max: 1600px;
     --review-width: 384px;
     --gutter: 24px;
   }
@@ -71,7 +73,7 @@
   
   body {
     margin: 0;
-    font-family: var(--font-sans);
+    font-family: var(--font-gilroy);
     font-size: var(--fs-body);
     line-height: 1.5;
     color: var(--c-ink);
