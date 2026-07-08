@@ -56,33 +56,35 @@ export function StepSection({ step, index, total }: StepSectionProps) {
       </h2>
 
       <div
-        id={panelId}
-        role="region"
-        aria-labelledby={headerId}
-        hidden={!open}
-        className={styles.panel}
-      >
-        {step.source === 'plans' ? (
-          <div className={styles.grid} role="radiogroup" aria-label={step.title}>
-            {catalog.plans.map((plan) => (
-              <PlanCard key={plan.id} plan={plan} />
-            ))}
-          </div>
-        ) : (
-          <div className={styles.grid}>
-            {(productsByStep.get(step.id) ?? []).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
+          id={panelId}
+          role="region"
+          aria-labelledby={headerId}
+          className={`${styles.collapse} ${open ? styles.expanded : ''}`}
+        >
+           <div className={styles.collapseInner}>
+            <div className={styles.panel}></div>
+              {step.source === 'plans' ? (
+                <div className={styles.grid} role="radiogroup" aria-label={step.title}>
+                  {catalog.plans.map((plan) => (
+                    <PlanCard key={plan.id} plan={plan} />
+                  ))}
+                </div>
+              ) : (
+                <div className={styles.grid}>
+                  {(productsByStep.get(step.id) ?? []).map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              )}
 
-        {step.nextLabel && nextStep && (
-          <div className={styles.nextRow}>
-            <button type="button" className={styles.nextButton} onClick={() => openStep(nextStep.id)}>
-              {step.nextLabel}
-            </button>
-          </div>
-        )}
+              {step.nextLabel && nextStep && (
+                <div className={styles.nextRow}>
+                  <button type="button" className={styles.nextButton} onClick={() => openStep(nextStep.id)}>
+                    {step.nextLabel}
+                  </button>
+                </div>
+              )}
+              </div>
       </div>
     </section>
   );

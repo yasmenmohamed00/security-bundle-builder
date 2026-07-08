@@ -90,10 +90,6 @@
     }
   }
   
-  .panel {
-    padding: 16px;
-  }
-  
   .grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -145,6 +141,59 @@
       width: auto;
     }
   }
+  
+  /* --- expand/collapse --- */
+  .collapse {
+    display: grid;
+    grid-template-rows: 0fr;                 /* collapsed: content row gets 0 of the space */
+    transition: grid-template-rows 280ms ease;
+  }
+  .expanded { padding: 16px;}
+
+  .section.open .collapse,
+  .expanded {
+    grid-template-rows: 1fr;                 /* expanded: content row gets its full size */
+  }
+
+  .collapseInner {
+    min-height: 0;                           
+    overflow: hidden;                        
+    visibility: hidden;
+    transition: visibility 0s 280ms;        
+  }
+
+  .expanded .collapseInner {
+    visibility: visible;
+    transition-delay: 0s;                    /* on open: visible immediately */
+  }
+
+  /* content drifts up + fades in slightly after the panel starts opening */
+  .panel {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 200ms ease, transform 240ms ease;
+  }
+
+  .expanded .panel {
+    opacity: 1;
+    transform: none;
+    transition-delay: 60ms;
+  }
+
+  /* --- chevron --- */
+  .chevron {
+    transition: transform 200ms ease;
+  }
+
+  .section.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* --- soften the lavender surface appearing --- */
+  .section {
+    transition: background-color 200ms ease, margin 280ms ease, padding 280ms ease;
+  }
+
   
   @media (max-width: 767px) {
     .grid {
