@@ -27,23 +27,42 @@ export function lineCompareTotal(line: LineItem): number | undefined {
 }
 
 export interface Totals {
+  subtotal: number;
+  compareSubtotal: number;
+  shipping: number; 
+  shippingCompareAt?: number;
+  freeShipping: boolean;
   total: number;
   compareTotal: number;
   savings: number;
 }
 
+type ShippingConfig = { price: number; freeThreshold: number };
+
 /**
  * Consumes LineItems only — it has no idea which lines are plans and which
  * are products.
  */
-export function totals(lines: LineItem[]): Totals {
-  const total = round(lines.reduce((sum, l) => sum + l.qty * l.unitPrice, 0));
-  const compareTotal = round(
+export function totals(lines: LineItem[], shippingCfg: ShippingConfig): Totals {
+  const subtotal = round(lines.reduce((sum, l) => sum + l.qty * l.unitPrice, 0));
+  const compareSubtotal = round(
     lines.reduce((sum, l) => sum + l.qty * (l.unitCompareAt ?? l.unitPrice), 0),
   );
-  return { total, compareTotal, savings: round(compareTotal - total) };
-}
 
+  const freeShipping = subtotal >= shippingCfg.freeThreshold;
+  const shipping = freeShipping ? 0 : shippingCfg.price;
+
+  return {
+    subtotal,
+    compareSubtotal,
+    shipping,
+    shippingCompareAt: freeShipping ? shippingCfg.price : undefined,
+    freeShipping,
+    total: round(subtotal + shipping),
+    compareTotal: round(compareSubtotal + shipping),
+    savings: round(compareSubtotal - subtotal),
+  };
+}
 
 export function financingMonthly(total: number, months: number, apr: number): number {
   if (total <= 0) return 0;

@@ -62,10 +62,10 @@ export function ReviewPanel() {
   const { catalog, state, saveForLater } = useBundle();
   const [checkoutMessage, setCheckoutMessage] = useState(false);
 
-  const lines = useMemo(() => toLineItems(state), [state]);
-  const { total, compareTotal, savings } = totals(lines);
   const { config } = catalog;
-  const monthly = financingMonthly(total, config.financing.months, config.financing.apr);
+  const lines = useMemo(() => toLineItems(state), [state]);
+  const t = useMemo(() => totals(lines, config.shipping), [lines, config.shipping]);
+  const monthly = financingMonthly(t.total, config.financing.months, config.financing.apr);
   const isEmpty = lines.length === 0;
 
   return (
@@ -110,37 +110,43 @@ export function ReviewPanel() {
         </span>
         <span className={styles.shippingLabel}>{config.shipping.label}</span>
         <Price
-          amount={config.shipping.price}
-          compareAt={config.shipping.compareAtPrice}
+          amount={t.shipping}
+          compareAt={t.shippingCompareAt}
           tone="review"
           stacked
         />
       </div>
 
+      {!isEmpty && !t.freeShipping && (
+        <p className={styles.shippingHint}>
+          Add {money(config.shipping.freeThreshold - t.subtotal)} more for free shipping
+        </p>
+      )}
+
       <div className={styles.totalsRow}>
-      <img src={guaranteeSeal} alt="My SVG guarantee Seal" width={78} height={78} />
+        <img src={guaranteeSeal} alt={config.guarantee.seal} width={78} height={78} />
         <div className={styles.totalsCol}>
           <p className={styles.financing}>
             {config.financing.prefix} {money(monthly)}/mo
           </p>
           <p className={styles.total}>
-            {compareTotal > total && (
+            {t.compareTotal > t.total && (
               <s className={styles.totalCompare}>
                 <span className="visually-hidden">Before discounts </span>
-                {money(compareTotal)}
+                {money(t.compareTotal)}
               </s>
             )}
             <span className={styles.totalCurrent} aria-live="polite">
               <span className="visually-hidden">Total </span>
-              {money(total)}
+              {money(t.total)}
             </span>
           </p>
         </div>
       </div>
 
-      {savings > 0 && (
+      {t.savings > 0 && (
         <p className={styles.savings} aria-live="polite">
-          {config.savingsMessage.replace('{amount}', money(savings))}
+          {config.savingsMessage.replace('{amount}', money(t.savings))}
         </p>
       )}
 
@@ -154,8 +160,8 @@ export function ReviewPanel() {
       </button>
       {checkoutMessage && (
         <p className={styles.status} role="status">
-          Checkout isn&rsquo;t wired up in this prototype — your {money(total)} system is ready to
-          go, though.
+          Checkout isn&rsquo;t wired up in this prototype — your {money(t.total)} system is ready
+          to go, though.
         </p>
       )}
 

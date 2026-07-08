@@ -50,7 +50,7 @@ export interface Category {
 
 export interface CatalogConfig {
   currency: string;
-  shipping: { label: string; compareAtPrice: number; price: number };
+  shipping: { label: string; price: number; freeThreshold: number };
   guarantee: { seal: string; title: string; body: string };
   financing: { prefix: string; months: number; apr: number };
   savingsMessage: string;

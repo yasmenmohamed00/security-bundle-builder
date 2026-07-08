@@ -3,8 +3,8 @@
     "currency": "USD",
     "shipping": {
       "label": "Fast Shipping",
-      "compareAtPrice": 5.99,
-      "price": 0
+      "price": 5.99,
+      "freeThreshold": 500
     },
     "guarantee": {
       "seal": "100% Wyze satisfaction guarantee",
