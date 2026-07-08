@@ -1,4 +1,4 @@
-# Security Bundle Builder
+# Take-Home Bundle Builder
 
 A multi-step bundle builder for configuring a home security system, with a live review panel that recalculates as you build. Rebuilt from the provided Figma as a React + TypeScript prototype.
 
