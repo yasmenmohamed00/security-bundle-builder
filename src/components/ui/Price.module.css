@@ -1,0 +1,39 @@
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .stacked {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+  }
+  
+  .compare {
+    color: var(--c-muted);
+    text-decoration: line-through;
+    font-size: var(--fs-body-s);
+    font-weight: 500;
+  }
+  
+  .compareDanger {
+    color: var(--c-danger);
+  }
+  
+  .current {
+    font-weight: 400;
+    font-size: var(--fs-title-s);
+    color: var(--c-muted);
+  }
+  
+  .currentAccent {
+    color: var(--c-primary);
+  }
+  
+  .free {
+    letter-spacing: 0.02em;
+  }
+  

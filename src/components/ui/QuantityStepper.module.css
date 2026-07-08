@@ -1,0 +1,49 @@
+.stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-s);
+    background: var(--c-stepper-bg);
+    color: var(--c-ink);
+    transition: background-color 120ms ease, border-color 120ms ease;
+  }
+  
+  .button:hover:not(:disabled) {
+    background: #e7e9f3;
+    border-color: #cdd1e2;
+  }
+  
+  .button:active:not(:disabled) {
+    background: #dfe2ef;
+  }
+  
+  .button:disabled {
+    opacity: 0.45;
+  }
+  
+  .value {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--fs-body);
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .sm .button {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .sm .value {
+    min-width: 16px;
+    font-size: var(--fs-body-s);
+  }
+  
