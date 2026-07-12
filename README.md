@@ -138,3 +138,7 @@ Sanity check on what the rate means: 12 × $19.19 = $230.28 repaid on a $187.89 
 "Save my system for later" is **explicit** (a deliberate click, never auto-save), matching the brief's configure → save → leave → return flow. It writes `{ savedAt, snapshot }` to `localStorage`, where the snapshot is the user's *inputs* only — `quantities`, `planId`, `activeVariants`, `openStepId`. Derived data (line items, totals) is never stored; it's recomputed from the snapshot.
 
 On return, `loadSnapshot()` validates the payload field-by-field inside a `try/catch`: absent, corrupted, hand-edited, or wrong-shaped data all collapse to `null`, and the app falls back to the seed. The worst case is a fresh start — never a crash in the first render. The projection adds a second line of defense by dropping any restored keys that no longer resolve against the catalog.
+
+## What I'd do next
+
+- **Unit tests** (Vitest) for the pure core: `totals` threshold behavior (below / at / above $500), `financingMonthly` against the worked example above, `toLineItems` stale-key dropping and ordering, and the reducer invariant that emptying a product's last variant clears its highlight.
